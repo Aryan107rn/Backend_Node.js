@@ -1,12 +1,26 @@
-const http=require("http");
+const http = require("http");
+const fs = require("fs");
 
-const server=http.createServer((req,res)=>{
-    console.log("New Request Recieve");
-    res.end("Hello from server");
+const PORT = 8000;
+
+const server = http.createServer((req, res) => {
+    const log = `${new Date().toISOString()} - ${req.method} ${req.url}\n`;
+
+    fs.appendFile("log.txt", log, (err) => {
+        if (err) {
+            console.error("Failed to write log:", err);
+
+            res.statusCode = 500;
+            res.end("Internal Server Error");
+            return;
+        }
+
+        res.statusCode = 200;
+        res.setHeader("Content-Type", "text/plain");
+        res.end("Hello From Server");
+    });
 });
 
-// adding port number which should be listening to the request
-
-// one server one port
-
-server.listen(8000,()=>console.log("server started"));
+server.listen(PORT, () => {
+    console.log(`Server started at http://localhost:${PORT}`);
+});

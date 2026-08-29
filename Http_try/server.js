@@ -6,8 +6,11 @@ const server = http.createServer((req, res) => {
         res.end("Home Page");
     }
 
-    if (req.url === "/about") {
+    else if (req.url === "/about") {
         res.end("About Page");
+    }
+    else{
+        res.end("404 not found");
     }
 
 });

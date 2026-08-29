@@ -1,11 +1,12 @@
 const http = require("http");
 const fs = require("fs");
-
+const url = require("url");
 const PORT = 8000;
 
 const server = http.createServer((req, res) => {
     const log = `${new Date().toISOString()} - ${req.method} ${req.url}\n`;
-
+    const myUrl=url.parse(req.url);
+    console.log(myUrl);
     fs.appendFile("log.txt", log, (err) => {
         if (err) {
             console.error("Failed to write log:", err);

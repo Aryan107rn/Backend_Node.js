@@ -1,12 +1,17 @@
 const http = require("http");
 
-const server=http.createServer((req,res)=>{
-    console.log(req.url);
-    console.log(req.method);
-    req.end("Hello World");
+const server = http.createServer((req, res) => {
+
+    if (req.url === "/") {
+        res.end("Home Page");
+    }
+
+    if (req.url === "/about") {
+        res.end("About Page");
+    }
+
 });
 
-server.listen(8000,()=>{
+server.listen(8000, () => {
     console.log("Server started");
 });
-

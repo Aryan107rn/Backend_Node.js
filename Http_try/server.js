@@ -9,6 +9,9 @@ const server = http.createServer((req, res) => {
     else if (req.url === "/about") {
         res.end("About Page");
     }
+    else if(req.url === "/contact"){
+        res.end("Contact Page");
+    }
     else{
         res.end("404 not found");
     }
@@ -16,5 +19,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(8000, () => {
-    console.log("Server started");
+    console.log("Server has started");
 });

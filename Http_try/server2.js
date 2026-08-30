@@ -6,6 +6,9 @@ const server = http.createServer((req,res)=>{
    if(req.method === "GET" && req.url === "/users"){
     res.end("Here are the user");
    }
+   if (req.method === "POST" && req.url === "/users") {
+    res.end("Create a new user");
+}
    else{
     res.end("Nothing useful");
    }
